@@ -33,3 +33,16 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push asia-south1-docker.pkg.dev/motocorp-simon/devops-docker-repo/devops-enterprise-app:latest
+      
+      
+      - name: Get GKE Credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: devops-app-cluster
+          location: asia-south1-a
+          project_id: motocorp-simon
+      
+      
+      - name: Deploy to GKE
+        run: |
+          kubectl set image deployment/devops-app devops-app=asia-south1-docker.pkg.dev/motocorp-simon/devops-docker-repo/devops-enterprise-app:latest
