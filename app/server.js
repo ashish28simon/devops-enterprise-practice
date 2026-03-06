@@ -7,6 +7,6 @@ const server = http.createServer((req, res) => {
   res.end('DevOps Pipeline Running\n');
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
